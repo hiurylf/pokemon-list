@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://pokeapi.co/docsv2",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
