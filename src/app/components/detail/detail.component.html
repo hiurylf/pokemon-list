@@ -18,13 +18,13 @@
 	<section class="d-flex py-4">
 		<section class="d-flex align-items-center justify-content-center px-4">
 			<img
+				appImageNotFound
 				height="140"
 				width="140"
 				[alt]="pokemon.name"
 				[src]="
 					pokemon.sprites.other.dream_world.front_default ||
-					pokemon.sprites.front_default ||
-					'/assets/no-image.png'
+					pokemon.sprites.front_default
 				" />
 		</section>
 
