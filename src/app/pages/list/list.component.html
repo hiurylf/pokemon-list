@@ -1,1 +1,33 @@
-<p>list works!</p>
+<header class="pb-2">
+	<div class="input-group mb-3">
+		<input
+			class="form-control"
+			placeholder="Pesquisar pokémon"
+			[formControl]="searchFormControl" />
+
+		<span class="input-group-text"><i class="bi bi-search"></i></span>
+	</div>
+</header>
+
+<main *ngIf="pokemonIdList$ | async as ids">
+	<div *ngFor="let id of ids">
+		<app-list-item [id]="id" (openDetail)="onOpenDetail(id)"></app-list-item>
+	</div>
+</main>
+
+<footer *ngIf="collectionSize">
+	<ngb-pagination
+		*ngIf="currentPage$ | async as page"
+		class="d-flex justify-content-center"
+		[collectionSize]="collectionSize"
+		[page]="page"
+		(pageChange)="onPageChange($event)"
+		[pageSize]="10"
+		[maxSize]="5"
+		[rotate]="true"
+		[ellipses]="false"
+		[disabled]="!!searchFormControl.value"
+		[boundaryLinks]="true"></ngb-pagination>
+</footer>
+
+<router-outlet></router-outlet>
