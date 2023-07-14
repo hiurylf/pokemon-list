@@ -32,6 +32,7 @@
       "@pages/*": ["src/app/pages/*"],
       "@store/*": ["src/app/store/*"],
       "@directives/*": ["src/app/directives/*"],
+      "@env/*": ["src/environments/*"],
     }
   },
   "angularCompilerOptions": {

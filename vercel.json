@@ -1,5 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/api:match*", "destination": "https://pokeapi.co/api/v2/pokemon:match*" }
-  ]
-}

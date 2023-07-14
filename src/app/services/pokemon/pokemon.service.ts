@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
 import { IPokemon } from '@interfaces/pokemon';
+import { environment } from '@env/environment';
 
 interface IGetIdsReturn {
 	count: number;
@@ -14,19 +15,20 @@ interface IGetIdsReturn {
 	providedIn: 'root',
 })
 export class PokemonService {
+	apiUrl = environment['api'];
 	constructor(private readonly http: HttpClient) {}
 
 	public getIds(params: {
 		offset: number;
 		limit: number;
 	}): Observable<IGetIdsReturn> {
-		return this.http.get<IGetIdsReturn>('/api', {
+		return this.http.get<IGetIdsReturn>(this.apiUrl, {
 			params,
 		});
 	}
 
 	getIdsByName(text: string): Observable<string[]> {
-		return this.http.get<IPokemon>(`/api/${text}`).pipe(
+		return this.http.get<IPokemon>(`${this.apiUrl}/${text}`).pipe(
 			map(({ id }) => [String(id)]),
 			catchError(() => of([]))
 		);
@@ -34,7 +36,7 @@ export class PokemonService {
 
 	getOneByNameOrId(text: string): Observable<IPokemon | null> {
 		return this.http
-			.get<IPokemon>(`/api/${text}`)
+			.get<IPokemon>(`${this.apiUrl}/${text}`)
 			.pipe(catchError(() => of(null)));
 	}
 }
