@@ -12,9 +12,15 @@ import { ModalWrapperComponent } from '@components/modal-wrapper/modal-wrapper.c
 
 import { StoreModule } from '@ngrx/store';
 import { pokemonListReducer } from '@app/store/pokemon-list.reducer';
+import { ImageNotFoundDirective } from '@directives/image-not-found/image-not-found.directive';
 
 @NgModule({
-	declarations: [AppComponent, DetailComponent, ModalWrapperComponent],
+	declarations: [
+		AppComponent,
+		DetailComponent,
+		ModalWrapperComponent,
+		ImageNotFoundDirective,
+	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
