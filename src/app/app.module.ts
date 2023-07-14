@@ -18,6 +18,7 @@ import { ListComponent } from './pages/list/list.component';
 		HttpClientModule,
 		ReactiveFormsModule,
 		FormsModule,
+		StoreModule.forRoot({ pokemonList: pokemonListReducer }),
 	],
 	providers: [],
 	bootstrap: [AppComponent],
