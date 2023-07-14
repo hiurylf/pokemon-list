@@ -68,7 +68,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "pokemon-list:build:production"
+              "browserTarget": "pokemon-list:build:production",
+              "proxyConfig": "src/proxy-prod.conf.json"
             },
             "development": {
               "browserTarget": "pokemon-list:build:development"
