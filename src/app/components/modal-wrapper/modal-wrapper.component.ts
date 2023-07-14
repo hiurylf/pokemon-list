@@ -22,7 +22,9 @@ export class ModalWrapperComponent implements OnInit {
 			size: 'lg',
 		});
 
-		dialog.componentInstance.id = paramMap.get('id');
+		if (dialog.componentInstance) {
+			dialog.componentInstance.id = paramMap.get('id');
+		}
 
 		dialog.result.then(
 			() => this.router.navigateByUrl('/home'),
