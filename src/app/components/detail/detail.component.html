@@ -1,0 +1,57 @@
+<ng-template #header let-title="title">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">{{ title | titlecase }}</h4>
+		<button
+			type="button"
+			class="btn-close"
+			aria-label="Close"
+			(click)="onCloseModal()"></button>
+	</div>
+</ng-template>
+
+<main *ngIf="pokemon$ | async as pokemon; else loading">
+	<ng-container
+		[ngTemplateOutlet]="header"
+		[ngTemplateOutletContext]="{ title: pokemon.name }">
+	</ng-container>
+
+	<section class="d-flex py-4">
+		<section class="d-flex align-items-center justify-content-center px-4">
+			<img
+				height="140"
+				width="140"
+				[alt]="pokemon.name"
+				[src]="
+					pokemon.sprites.other.dream_world.front_default ||
+					pokemon.sprites.front_default ||
+					'/assets/no-image.png'
+				" />
+		</section>
+
+		<div class="me-4 p-2 rounded flex-colum flex-grow-1 text-bg-light">
+			<div class="mb-2">Altura: {{ pokemon.height }}</div>
+
+			<div class="mb-2">Peso: {{ pokemon.weight }}</div>
+
+			<div class="mb-2">Experiência Base: {{ pokemon.base_experience }}</div>
+
+			<div class="mb-2">
+				{{ pokemon.types.length | i18nPlural : typeText }}:
+
+				<ng-container *ngFor="let type of pokemon.types; let last = last">
+					<span>{{ type.type.name }}</span>
+					<span *ngIf="!last" class="px-1">&bull;</span>
+				</ng-container>
+			</div>
+		</div>
+	</section>
+</main>
+
+<ng-template #loading>
+	<ng-container
+		[ngTemplateOutlet]="header"
+		[ngTemplateOutletContext]="{
+			title: (isLoading$ | async) ? 'Carregando' : 'Não Encontrando'
+		}">
+	</ng-container>
+</ng-template>
