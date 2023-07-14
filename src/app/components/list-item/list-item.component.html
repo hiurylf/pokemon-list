@@ -1,0 +1,130 @@
+<main
+	*ngIf="pokemon$ | async as pokemon"
+	class="d-flex py-3 mb-4 bg-primary rounded-pill main">
+	<section
+		class="d-flex align-items-center justify-content-center px-4"
+		(click)="openDetail.emit()">
+		<img
+			height="80"
+			width="80"
+			[alt]="pokemon.name"
+			[src]="
+				pokemon.sprites.other.dream_world.front_default ||
+				pokemon.sprites.front_default ||
+				'/assets/no-image.png'
+			" />
+	</section>
+
+	<ng-container *ngIf="pokemonListItem$ | async as pokemonCache">
+		<div class="px-4 flex-colum flex-grow-1">
+			<div class="bg-warning mb-3 rounded">
+				<span class="px-2">{{ pokemon.name | titlecase }}</span>
+			</div>
+
+			<div class="d-flex flex-row">
+				<div class="flex-grow-1 bg-warning rounded">
+					<div class="comment">
+						<div class="px-2 fst-italic comment__name">
+							{{ pokemonCache.comment?.name }}
+						</div>
+						<div class="fw-light comment ps-1">
+							{{ pokemonCache.comment?.text }}
+						</div>
+					</div>
+				</div>
+
+				<div class="ms-4 d-flex flex-nowrap align-items-center">
+					<button
+						type="button"
+						class="btn btn-sm btn-warning me-2 py-0"
+						(click)="
+							onOpenCommentModal(pokemon.id, contentModal, pokemonCache.comment)
+						">
+						<div>{{ pokemonCache.comment ? 'Editar' : 'Adicionar' }}</div>
+						<div>comentário</div>
+					</button>
+
+					<button
+						type="button"
+						class="btn btn-sm btn-danger py-0"
+						(click)="onRemoveComment(pokemon.id)"
+						[disabled]="!pokemonCache.comment">
+						<div>Excluir</div>
+						<div>comentário</div>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="d-flex align-items-center mx-2">
+			<button
+				type="button"
+				class="btn btn-lg"
+				(click)="onChangeFavorite(pokemon.id)">
+				<i
+					class="bi icon"
+					[class]="pokemonCache.isFavorite ? 'bi-star-fill' : 'bi-star'"
+					color-warning></i>
+			</button>
+		</div>
+	</ng-container>
+</main>
+
+<ng-template #contentModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+		<button
+			type="button"
+			class="btn-close"
+			aria-label="Close"
+			(click)="modal.dismiss()"></button>
+	</div>
+	<div class="modal-body">
+		<form [formGroup]="form">
+			<div class="mb-3">
+				<input
+					type="text"
+					id="name"
+					name="name"
+					class="form-control"
+					formControlName="name" />
+
+				<div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+					<div *ngIf="name?.errors?.['required']" class="text-danger ps-1">
+						Campo obrigatório
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<textarea
+					class="form-control"
+					placeholder="Comentário"
+					formControlName="text"
+					rows="3">
+				</textarea>
+
+				<div *ngIf="text?.invalid && (text?.dirty || text?.touched)">
+					<div *ngIf="text?.errors?.['required']" class="text-danger ps-1">
+						Campo obrigatório
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<ngb-alert
+			type="danger"
+			class="col p-2 me-4 text-center"
+			[dismissible]="false"
+			*ngIf="showFormInvalidMessage && form.invalid">
+			Preencha todos os campos
+		</ngb-alert>
+		<button
+			type="button"
+			class="btn btn-outline-success"
+			(click)="onSaveComment(modal.close)">
+			Salvar
+		</button>
+	</div>
+</ng-template>
