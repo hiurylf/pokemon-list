@@ -27,13 +27,10 @@ export const pokemonListReducer = createReducer(
 		const pokemon = state.find(el => el.id === id);
 
 		if (pokemon) {
-			return state.map(el => {
-				if (el.id === id) {
-					el.isFavorite = !el.isFavorite;
-				}
-
-				return el;
-			});
+			return state.map(el => ({
+				...el,
+				...(el.id === id && { isFavorite: !pokemon.isFavorite }),
+			}));
 		}
 
 		return [...state, { id, isFavorite: true }];
