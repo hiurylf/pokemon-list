@@ -16,6 +16,7 @@
         "plugin:prettier/recommended"
       ],
       "rules": {
+        "@typescript-eslint/no-non-null-assertion": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -44,12 +45,31 @@
       "rules": {}
     },
     {
-      "files": ["*.html"],
-      "excludedFiles": ["*inline-template-*.component.html"],
-      "extends": ["plugin:prettier/recommended"],
+      "files": [
+        "*.html"
+      ],
+      "excludedFiles": [
+        "*inline-template-*.component.html"
+      ],
+      "extends": [
+        "plugin:prettier/recommended"
+      ],
       "rules": {
-        "prettier/prettier": ["error", { "parser": "angular" }]
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular"
+          }
+        ]
       }
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/recommended"
+      ]
     }
   ]
 }
