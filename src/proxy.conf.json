@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://pokeapi.co/docsv2",
+    "target": "https://pokeapi.co/api/v2/pokemon",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {
