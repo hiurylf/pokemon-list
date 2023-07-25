@@ -71,7 +71,6 @@ export class ListItemComponent implements OnInit {
 			.open(contentModal, { ariaLabelledBy: 'modal-basic-title' })
 			.result.then(
 				comment => {
-					console.log('comment', comment);
 					if (comment) {
 						this.store.dispatch(
 							PokemonListActions.addComment({
