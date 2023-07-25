@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, Observable, of } from 'rxjs';
 import { IPokemon } from '@interfaces/pokemon';
-import { environment } from '@env/environment';
 
 interface IGetIdsReturn {
 	count: number;
@@ -15,7 +14,7 @@ interface IGetIdsReturn {
 	providedIn: 'root',
 })
 export class PokemonService {
-	apiUrl = environment['api'];
+	apiUrl = 'https://pokeapi.co/api/v2/pokemon';
 	constructor(private readonly http: HttpClient) {}
 
 	public getIds(params: {
