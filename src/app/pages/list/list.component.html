@@ -2,7 +2,7 @@
 	<div class="input-group mb-3">
 		<input
 			class="form-control"
-			placeholder="Pesquisar pokémon"
+			placeholder="Pesquisar pokémon (nome completo)"
 			[formControl]="searchFormControl" />
 
 		<span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -27,7 +27,7 @@
 		[rotate]="true"
 		[ellipses]="false"
 		[disabled]="!!searchFormControl.value"
-		[boundaryLinks]="true"></ngb-pagination>
+		[boundaryLinks]="true" />
 </footer>
 
 <router-outlet></router-outlet>
