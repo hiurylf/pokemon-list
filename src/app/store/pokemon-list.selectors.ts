@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { IPokemonListState } from '@store/pokemon-list.state';
+import { IPokemonListState } from './pokemon-list.state';
 
 const selectPokemonListState =
 	createFeatureSelector<IPokemonListState>('pokemonList');

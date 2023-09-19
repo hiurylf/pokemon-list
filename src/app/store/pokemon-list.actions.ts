@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IComment } from '@store/pokemon-list.state';
+import { IComment } from './pokemon-list.state';
 
 export const addComment = createAction(
 	'[Pokemon List] Add Comment',

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as ListItemActions from './pokemon-list.actions';
-import { IPokemonListState } from '@app/store/pokemon-list.state';
+import { IPokemonListState } from './pokemon-list.state';
 
 export const initialState: IPokemonListState = [];
 
